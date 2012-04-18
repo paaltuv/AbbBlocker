@@ -3,8 +3,9 @@
 // @name          AbbBlocker
 // @fullname      AndersBehringBreivikBlocker
 // @description   AbbBlocker for norske nettaviser (vg/aftenposten/bt)
-// @author        Paal T.
-// @version       2012-04-18.2
+// @author        nso
+// @version       2012-04-18.3
+// @downloadURL   https://github.com/nso/AbbBlocker/raw/master/AbbBlocker.user.js
 // @include       http://vg.no/*
 // @include       http://*.vg.no/*
 // @include       http://aftenposten.no/*
