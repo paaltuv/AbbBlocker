@@ -13,7 +13,7 @@ Currently supported sites:
 Currently supported browsers:
 - Google Chrome \o/
 - Opera
-- FireFox
+- FireFox (with GreaseMonkey)
 
 Installation for Google Chrome:
 - Click and download the following link in Google Chrome: https://github.com/nso/AbbBlocker/raw/master/AbbBlocker.user.js
