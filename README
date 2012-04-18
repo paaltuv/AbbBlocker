@@ -1,5 +1,14 @@
 This is a simple user script for removing articles about ABB from the frontpage of norwegian online news papers.
-Currently there is support for BT, VG and Aftenposten. Contributors are welcome.
+The sites are still not "ABB-free", but there should be minimal exposure to ABB on the supported sites.
+
+Contributors are welcome, the repository for the project is open for editing.
+
+Currently supported sites:
+vg.no
+aftenposten.no
+bt.no
+tv2.no
+nrk.no
 
 Installation:
 - Click and download the following link in Google Chrome: https://github.com/nso/AbbBlocker/raw/master/AbbBlocker.user.js
