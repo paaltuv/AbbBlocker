@@ -11,9 +11,15 @@
 // @include       http://*.aftenposten.no/*
 // @include       http://bt.no/*
 // @include       http://*.bt.no/*
+// @include       http://nrk.no/*
+// @include       http://*.nrk.no/*
+// @include       http://tv2.no/*
+// @include       http://*.tv2.no/*
 // ==/UserScript==
 
 // Init
+var commonRegexpMatches = ['breivik', '22(\.|de)?\ juli', '22-juli', '22juli', 'terrorretts(s)?ak', 'knight(s)?\ templar', 'utoya'];
+
 var configs = [
      {
          domain: "vg.no",
@@ -21,10 +27,24 @@ var configs = [
             {
                 name: "VG forside",
                 url_match: function () {
-                    return /^(.*\.)?vg\.no$/.test(window.location.host);
+                    // vg.no
+                    return /^(.*\.)?vg\.no\/$/.test(window.location.href);
                 },
                 perform: function () {
-                    RemoveAbbArticles(new RegExp('(breivik|rettssak-dag|22-juli|vgtv|rettssak_990\.jpg)', 'i'), document.getElementsByClassName('article-content'));
+                    RemoveElements([document.getElementById('front-88')]);
+                    EmptyAbbArticles(BuildRegexp(['rettssak-dag', 'vgtv']), document.getElementsByClassName('article-content'));
+                }
+            },
+            {
+                name: "VG subseksjon",
+                url_match: function () {
+                    // vg.no/nyheter/ 
+                    // vg.no/nyheter/innenriks/
+                    // vg.no/nyheter/utenriks/
+                    return /^(.*\.)?vg\.no\/(nyheter|nyheter\/innenriks|nyheter\/utenriks)\/$/.test(window.location.href);
+                },
+                perform: function () {
+                    EmptyAbbArticles(BuildRegexp(['rettssak-dag', 'vgtv']), document.getElementsByClassName('bredsak'));
                 }
             }
         ]
@@ -35,10 +55,25 @@ var configs = [
             {
                 name: "Aftenposten forside",
                 url_match: function () {
-                    return /^(.*\.)?aftenposten\.no$/.test(window.location.host);
+                    // aftenposten.no
+                    return /^(.*\.)?aftenposten\.no\/$/.test(window.location.href);
                 },
                 perform: function () {
-                    RemoveAbbArticles(new RegExp('(breivik|227-rettssaken|22juli|webtv\/)', 'i'), document.getElementsByClassName('widget'));
+                    EmptyAbbArticles(BuildRegexp(['227-rettssaken', 'webtv']), document.getElementsByClassName('stories'));
+                }
+            },
+            {
+                name: "Aftenposten subseksjon",
+                url_match: function () {
+                    // aftenposten.no/norge/
+                    // aftenposten.no/nyheter/iriks/ 
+                    // aftenposten.no/nyheter/iriks/politikk/
+                    // aftenposten.no/nyheter/iriks/oslo/
+                    // aftenposten.no/nyheter/uriks/
+                    return /^(.*\.)?aftenposten\.no\/(norge|verden|nyheter\/iriks|nyheter\/iriks\/politikk|nyheter\/iriks\/oslo|nyheter\/uriks)\/$/.test(window.location.href);
+                },
+                perform: function () {
+                    EmptyAbbArticles(BuildRegexp(['227-rettssaken', 'webtv']), document.getElementsByClassName('stories'));
                 }
             }
         ]
@@ -49,10 +84,67 @@ var configs = [
             {
                 name: "BT forside",
                 url_match: function () {
-                    return /^(.*\.)?bt\.no$/.test(window.location.host);
+                    // bt.no
+                    return /^(.*\.)?bt\.no\/$/.test(window.location.href);
                 },
                 perform: function () {
-                    RemoveAbbArticles(new RegExp('(breivik)', 'i'), document.getElementsByClassName('widget'));
+                    EmptyAbbArticles(BuildRegexp(), document.getElementsByClassName('widget'));
+                }
+            }
+        ]
+     },
+     {
+         domain: "nrk.no",
+         checks: [
+            {
+                name: "NRK forside",
+                url_match: function () {
+                    // nrk.no
+                    return /^(.*\.)?nrk\.no\/$/.test(window.location.href);
+                },
+                perform: function () {
+                    RemoveElements(document.getElementsByClassName('df-container-skin-227-special-top'));
+                    EmptyAbbArticles(BuildRegexp(['\/227']), document.getElementsByClassName('article-content'));
+                }
+            },
+            {
+                name: "NRK subseksjon",
+                url_match: function () {
+                    // nrk.no/norge/
+                    return /^(.*\.)?nrk\.no\/(norge)\/$/.test(window.location.href);
+                },
+                perform: function () {
+                    EmptyAbbArticles(BuildRegexp(['\/227']), document.getElementsByClassName('intro-element'));
+                }
+            }
+        ]
+     },
+     {
+         domain: "tv2.no",
+         checks: [
+            {
+                name: "TV2 forside",
+                url_match: function () {
+                    // tv2.no
+                    return /^(.*\.)?tv2\.no\/$/.test(window.location.href);
+                },
+                perform: function () {
+                    EmptyAbbArticles(BuildRegexp(), document.getElementsByClassName('article-content'));
+                }
+            },
+            {
+                name: "TV2 subseksjon",
+                url_match: function () {
+                    // tv2.no/nyheter/
+                    return /^(.*\.)?tv2\.no\/(nyheter|nyheter\/|nyheter\/\?ref\=toppmeny)$/.test(window.location.href);
+                },
+                perform: function () {
+                    var regexp = BuildRegexp();
+                    EmptyAbbArticles(regexp, document.getElementsByClassName('article-content'));
+                    EmptyAbbArticles(regexp, document.getElementsByClassName('even'));
+                    EmptyAbbArticles(regexp, document.getElementsByClassName('odd'));
+                    EmptyAbbArticles(regexp, document.getElementsByClassName('tv2_nyhetene_valg_feed'));
+                    RemoveElements([document.getElementById('inmemoriam_container')]);
                 }
             }
         ]
@@ -60,7 +152,7 @@ var configs = [
 ];
 
 // Helpers
-function RemoveAbbArticles(regex, articles) {
+function EmptyAbbArticles(regex, articles) {
     if (articles.length == 0) {
         return;
     }
@@ -69,9 +161,28 @@ function RemoveAbbArticles(regex, articles) {
         var article = articles[i];
 
         if (regex.test(article.innerHTML)) {
-            article.innerHTML = '';
+            article.innerHTML = ''; ;
         }
     }
+}
+
+function RemoveElements(elements) {
+    if (elements != undefined) {
+        for (var i = 0; i < elements.length; i++) {
+            var element = elements[0];
+            element.parentNode.removeChild(element);
+        }
+    }
+}
+
+function BuildRegexp(parts) {
+    var allParts = commonRegexpMatches;
+
+    if (parts != undefined && Object.prototype.toString.call(parts) === '[object Array]') {
+        allParts.push(parts);
+    }
+
+    return new RegExp('(' + allParts.join('|') + ')', 'i');
 }
 
 // Runtime
@@ -95,4 +206,3 @@ for (var i = 0; i < configs.length; i++) {
         }
     }
 }
-
