@@ -1,4 +1,4 @@
-This is a simple user script for removing articles about ABB from the frontpage of norwegian online news papers.
+This is a simple user script for Google Chrome that removes articles about ABB from the frontpage of norwegian online news papers.
 The sites are still not "ABB-free", but there should be minimal exposure to ABB on the supported sites.
 
 Contributors are welcome, the repository for the project is open for editing.
