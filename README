@@ -2,7 +2,7 @@ This is a simple user script for removing articles about ABB from the frontpage 
 Currently there is support for BT, VG and Aftenposten. Contributors are welcome.
 
 Installation:
-- Open the following link in Google Chrome: https://github.com/nso/AbbBlocker/raw/master/AbbBlocker.user.js
-- Download and open the file (click the downloaded file in Google Chrome to open it)
+- Click and download the following link in Google Chrome: https://github.com/nso/AbbBlocker/raw/master/AbbBlocker.user.js
+- Open the downloaded file (click the file in Google Chrome to open it)
 - Accept the Extension installation
 - Done
