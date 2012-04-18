@@ -1,16 +1,21 @@
-This is a simple user script for Google Chrome that removes articles about Anders Behring Breivik from the frontpage of norwegian online news papers.
+This is a simple user script for browsers that removes articles about Anders Behring Breivik from the frontpage of norwegian online news papers.
 The sites are still not "ABB-free", but there should be minimal exposure to ABB on the supported sites.
 
 Contributors are welcome, the repository for the project is open for editing.
 
 Currently supported sites:
-vg.no
-aftenposten.no
-bt.no
-tv2.no
-nrk.no
+- vg.no
+- aftenposten.no
+- bt.no
+- tv2.no
+- nrk.no
 
-Installation:
+Currently supported browsers:
+- Google Chrome \o/
+- Opera
+- FireFox
+
+Installation for Google Chrome:
 - Click and download the following link in Google Chrome: https://github.com/nso/AbbBlocker/raw/master/AbbBlocker.user.js
 - Open the downloaded file (click the file in Google Chrome to open it)
 - Accept the Extension installation
