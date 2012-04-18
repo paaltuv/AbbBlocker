@@ -38,7 +38,7 @@ var configs = [
                     return /^(.*\.)?aftenposten\.no/.test(window.location.host);
                 },
                 perform: function () {
-                    RemoveAbbArticles(new RegExp('(breivik|227-rettssaken|22juli|webtv\/)', 'i'), document.getElementsByClassName('article-content'));
+                    RemoveAbbArticles(new RegExp('(breivik|227-rettssaken|22juli|webtv\/)', 'i'), document.getElementsByClassName('widget'));
                 }
             }
         ]
@@ -52,7 +52,7 @@ var configs = [
                     return /^(.*\.)?bt\.no/.test(window.location.host);
                 },
                 perform: function () {
-                    RemoveAbbArticles(new RegExp('(breivik)', 'i'), document.getElementsByClassName('article-content'));
+                    RemoveAbbArticles(new RegExp('(breivik)', 'i'), document.getElementsByClassName('widget'));
                 }
             }
         ]
