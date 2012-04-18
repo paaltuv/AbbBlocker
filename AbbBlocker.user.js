@@ -1,4 +1,3 @@
-// <![CDATA[
 // ==UserScript==
 // @name          AbbBlocker
 // @fullname      AndersBehringBreivikBlocker
@@ -59,7 +58,6 @@ var configs = [
         ]
      }
 ];
-
 
 // Helpers
 function RemoveAbbArticles(regex, articles) {
