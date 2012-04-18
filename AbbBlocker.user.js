@@ -15,12 +15,12 @@
 
 // vg.no
 if(/^(.*\.)?vg\.no/.test(window.location.host)) {
-  RemoveAbbArticles(new RegExp('(breivik|rettssak-dag|22-juli)', 'i'), document.getElementsByClassName('article-content'));
+  RemoveAbbArticles(new RegExp('(breivik|rettssak-dag|22-juli|vgtv|rettssak_990\.jpg)', 'i'), document.getElementsByClassName('article-content'));
 }
 
 // aftenposten.no
 else if(/^(.*\.)?aftenposten\.no/.test(window.location.host)) {
-  RemoveAbbArticles(new RegExp('(breivik|227-rettssaken|22juli)', 'i'), document.getElementsByClassName('widget'));
+  RemoveAbbArticles(new RegExp('(breivik|227-rettssaken|22juli|webtv\/)', 'i'), document.getElementsByClassName('widget'));
 }
 
 // bt.no
