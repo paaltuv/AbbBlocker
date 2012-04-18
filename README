@@ -16,7 +16,19 @@ Currently supported browsers:
 - FireFox (with GreaseMonkey)
 
 Installation for Google Chrome:
-- Click and download the following link in Google Chrome: https://github.com/nso/AbbBlocker/raw/master/AbbBlocker.user.js
-- Open the downloaded file (click the file in Google Chrome to open it)
-- Accept the Extension installation
-- Done
+- Click and download the following link: https://github.com/nso/AbbBlocker/raw/master/AbbBlocker.user.js
+- Open the downloaded file (click the file in Google Chrome to open it).
+- Accept the Extension installation.
+- Done.
+
+Installation for Opera:
+- Create a folder on your computer for userscripts.
+- Click and download the following link to the folder you created: https://github.com/nso/AbbBlocker/raw/master/AbbBlocker.user.js
+- Open Opera. Go to 'Tools->Preferences->Advanced->-Content->-Javascript options' and select the folder you created. 
+- Click "OK" and exit preference window.
+- Done.
+
+Installation for Firefox
+- Install GreaseMonkey if it's not already installed. Use this link: https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/
+- Click and download the following link: https://github.com/nso/AbbBlocker/raw/master/AbbBlocker.user.js
+- Done.
