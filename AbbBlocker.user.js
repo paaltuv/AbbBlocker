@@ -21,7 +21,7 @@ var configs = [
             {
                 name: "VG forside",
                 url_match: function () {
-                    return /^(.*\.)?vg\.no/.test(window.location.host);
+                    return /^(.*\.)?vg\.no$/.test(window.location.host);
                 },
                 perform: function () {
                     RemoveAbbArticles(new RegExp('(breivik|rettssak-dag|22-juli|vgtv|rettssak_990\.jpg)', 'i'), document.getElementsByClassName('article-content'));
@@ -35,7 +35,7 @@ var configs = [
             {
                 name: "Aftenposten forside",
                 url_match: function () {
-                    return /^(.*\.)?aftenposten\.no/.test(window.location.host);
+                    return /^(.*\.)?aftenposten\.no$/.test(window.location.host);
                 },
                 perform: function () {
                     RemoveAbbArticles(new RegExp('(breivik|227-rettssaken|22juli|webtv\/)', 'i'), document.getElementsByClassName('widget'));
@@ -49,7 +49,7 @@ var configs = [
             {
                 name: "BT forside",
                 url_match: function () {
-                    return /^(.*\.)?bt\.no/.test(window.location.host);
+                    return /^(.*\.)?bt\.no$/.test(window.location.host);
                 },
                 perform: function () {
                     RemoveAbbArticles(new RegExp('(breivik)', 'i'), document.getElementsByClassName('widget'));
