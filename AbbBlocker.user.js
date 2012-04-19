@@ -103,7 +103,7 @@ var configs = [
                     return /^(.*\.)?nrk\.no\/$/.test(window.location.href);
                 },
                 perform: function () {
-                    RemoveElements(document.getElementsByClassName('df-container-skin-227-special-top'));
+                    RemoveElements([document.getElementsByClassName('df-container-skin-227-special-top')]);
                     EmptyAbbArticles(BuildRegexp(['\/227']), document.getElementsByClassName('article-content'));
                 }
             },
