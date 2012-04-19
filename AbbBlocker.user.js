@@ -100,7 +100,7 @@ var configs = [
                 name: "NRK forside",
                 url_match: function () {
                     // nrk.no
-                    return /^(.*\.)?nrk\.no\/$/.test(window.location.href);
+                    return /^(.*\.)?nrk\.no$/.test(window.location.href);
                 },
                 perform: function () {
                     RemoveElements([document.getElementsByClassName('df-container-skin-227-special-top')]);
